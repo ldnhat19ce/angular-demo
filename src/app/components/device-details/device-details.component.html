@@ -1,0 +1,92 @@
+
+<div class="page-title-box">
+    <div class="row align-items-center">
+        <div class="col-sm-6">
+            <h4 class="page-title">{{device.deviceName}}</h4>
+        </div>
+        <div class="col-sm-6">
+            <ol class="breadcrumb float-right">
+                <!-- <li class="breadcrumb-item"><a href="#"></a></li>
+                <li class="breadcrumb-item active"></li> -->
+            </ol>
+        </div>
+    </div>
+    <!-- end row -->
+</div>
+<!-- end page-title -->
+<!-- START ROW -->
+<div class="row">
+<div class="col-xl-12">
+    <div class="card m-b-30">
+        <div class="card-body">
+            <h4 class="mt-0 header-title mb-4">Device: {{device.deviceName}}</h4>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">State</th>
+                            <th scope="col">Created at</th>
+                            <th scope="col">Note</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{device.deviceName}}</td>
+                            <td>
+                                <div *ngIf="stateDevice == 'ON'">
+                                    <span class="badge badge-success">
+                                        {{stateDevice}}
+                                        </span>
+                                </div>
+                                <div *ngIf="stateDevice == 'OFF'">
+                                    <span class="badge badge-warning">
+                                        {{stateDevice}}
+                                        </span>
+                                </div>
+                            </td>
+                            <td>{{device.createdAtStr}}</td>
+                            <td>
+                                {{device.deviceNote}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div *ngIf="stateDevice == 'ON'">
+                    <button class="btn btn-primary btn-sm" (click)="onChangeStateDevice()">
+                        Turn off device</button>
+                </div>
+                <div *ngIf="stateDevice == 'OFF'">
+                    <button class="btn btn-primary btn-sm" (click)="onChangeStateDevice()">
+                        Turn on device</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</div>
+<!-- END ROW -->
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card m-b-30">
+            <div class="card-body">
+
+                <h4 class="mt-0 header-title mb-4">Recent Activity</h4>
+                <ol class="activity-feed mb-0">
+                    <li class="feed-item" *ngFor="let notification of notifications">
+                        <div class="feed-item-list">
+                            <p class="text-muted mb-1">{{notification.createdAtStr}}</p>
+                            <p class="font-15 mt-0 mb-0">{{notification.title}}: 
+                                <b class="text-primary">{{notification.content}}</b></p>
+                        </div>
+                    </li>
+
+                </ol>
+
+            </div>
+        </div>
+    </div>
+</div>
